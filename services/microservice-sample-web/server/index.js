@@ -135,6 +135,13 @@ app.get('/api/users', (req, res, next) => {
   })().catch(next)
 })
 
+app.get('/hoge', function(req, res, next) {
+  var param = {"値":"これはサンプルAPIです"};
+  res.header('Content-Type', 'application/json; charset=utf-8')
+  res.send(param);
+});
+
+
 app.post('/api/follow', (req, res, next) => {
   ;(async () => {
     const followRes = await axios.post(
