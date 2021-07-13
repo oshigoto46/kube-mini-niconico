@@ -5,21 +5,31 @@
         <div>test2: {{ test3 }}</div>
         <div>test2: {{ test4 }}</div>
         <div>test2: {{ hoges }}</div>
+        <button @click="culc">計算する</button>
     </div>
 </template>
 
 <script>
 export default {
-    async asyncData({app}) {
-      const res = await app.$axios.get('/hoge')
-        return {
-            hoges: "hoge" ,// res.data,
-            test: "asyncData",
-            test2: "asyncData2",
-            test3: "asyncData3"
-        };
+    methods: {
+        async asyncData({app}) {
+        const res = await app.$axios.get('/hoge')
+          return {
+              hoges: res.data,
+              test: "asyncData",
+              test2: "asyncData2",
+              test3: "asyncData3"
+          };
+      },
+      async culc() {
+        if(confirm('data')){
+          const res = await this.$axios.get('/hoge');
+          alert( 1 + 1);
+          alert(JSON.stringify(res.data));
+        }
+      }
     },
-    data() {
+     data() {
         return {
             test: "data",
             test2: "data2",
